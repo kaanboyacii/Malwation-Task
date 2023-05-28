@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   loginFailure,
@@ -69,16 +69,16 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #4B56D2;
+  background-color: ${props => props.disabled ? "#ccc" : "#4B56D2"};
   color: #F1F6F5;
   border: none;
   border-radius: 5px;
   padding: 1rem;
   font-size: 1rem;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 
   &:hover {
-    background-color: #472183;
+    background-color: ${props => props.disabled ? "#ccc" : "#472183"};
     transition: all 0.2s ease-in-out;
   }
 `;
@@ -93,12 +93,52 @@ const Error = styled.p`
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage1, setErrorMessage1] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [isTimeout, setIsTimeout] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const timeoutDuration = 5 * 60 * 1000; // 5 dakika
+    const storedTimeout = localStorage.getItem("timeout");
+    const storedAttempts = localStorage.getItem("loginAttempts");
+
+    if (storedTimeout && storedAttempts) {
+      const remainingTime = timeoutDuration - (Date.now() - parseInt(storedTimeout));
+      const attempts = parseInt(storedAttempts);
+
+      if (remainingTime > 0 && attempts >= 5) {
+        setIsTimeout(true);
+        const timeout = setTimeout(() => {
+          setIsTimeout(false);
+          setLoginAttempts(0);
+          localStorage.removeItem("timeout");
+          localStorage.removeItem("loginAttempts");
+        }, remainingTime);
+        return () => clearTimeout(timeout);
+      } else if (remainingTime > 0) {
+        setLoginAttempts(attempts);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTimeout) {
+      localStorage.setItem("timeout", Date.now().toString());
+      localStorage.setItem("loginAttempts", loginAttempts.toString());
+    } else {
+      localStorage.removeItem("timeout");
+      localStorage.removeItem("loginAttempts");
+    }
+  }, [isTimeout, loginAttempts]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (isTimeout) {
+      setErrorMessage("5 hatalı giriş denemesi yaptınız. Lütfen 5 dakika bekleyin.");
+      return;
+    }
     dispatch(loginStart());
     try {
       const res = await axios.post("/auth/signin", { email, password });
@@ -106,7 +146,19 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       dispatch(loginFailure());
-      setErrorMessage1("Geçersiz giriş bilgileri !");
+      setLoginAttempts((prevAttempts) => prevAttempts + 1);
+      if (loginAttempts + 1 >= 5) {
+        setIsTimeout(true);
+        setErrorMessage("5 hatalı giriş denemesi yaptınız. Lütfen 5 dakika bekleyin.");
+        const timeout = setTimeout(() => {
+          setIsTimeout(false);
+          setLoginAttempts(0);
+          localStorage.removeItem("timeout");
+          localStorage.removeItem("loginAttempts");
+        }, 5 * 60 * 1000); // 5 dakika
+        return () => clearTimeout(timeout);
+      }
+      setErrorMessage("Geçersiz giriş bilgileri !");
     }
   };
 
@@ -124,12 +176,12 @@ const Login = () => {
             placeholder="Şifre"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleLogin}>Giriş yap</Button>
-          <Error>
-            {errorMessage1 && <div>{errorMessage1}</div>}
-          </Error>
+          <Button onClick={handleLogin} disabled={isTimeout}>
+            Giriş yap
+          </Button>
+          <Error>{errorMessage}</Error>
           <SubTitle>Kayıt olmak için buradan devam et</SubTitle>
-          <Button onClick={() => navigate("/signup")}>Kayıt ol</Button>{" "}
+          <Button onClick={() => navigate("/signup")}>Kayıt ol</Button>
         </Form>
       </Wrapper>
     </Container>
