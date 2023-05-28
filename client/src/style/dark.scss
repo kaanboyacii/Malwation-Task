@@ -1,0 +1,107 @@
+.app.dark {
+  background-color: #1d1b1b;
+  color: #82c3ec;
+
+  .chartGrid {
+    stroke: #82c3ec;
+  }
+
+  .table {
+    background-color: #1d1b1b;
+    .tableCell {
+      color: #fff;
+    }
+    .tableHead {
+      background-color: #494545;
+      font-weight: 700;
+    }
+    .tableRow {
+      &:nth-child(even) {
+        background-color: #494545;
+      }
+
+      &:nth-child(odd) {
+        background-color: #1d1b1b;
+      }
+
+      &:hover {
+        background-color: #303030;
+        transition: background-color 0.5s ease-in-out; /* Renk değişimi 0.5 saniye sürsün ve yavaşça gerçekleşsin */
+      }
+    }
+  }
+  .widget {
+    .link {
+      width: max-content;
+      font-size: 12px;
+      color: gray;
+      border-bottom: 1px solid gray;
+    }
+  }
+  .navbar {
+    color: #999;
+    border-color: #333;
+
+    .search {
+      border-color: gray;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #82C3EC;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+    .logout-button {
+      @extend .button;
+      background-color: #1d1b1b;
+      color: #82C3EC;
+
+      &:hover {
+        background-color: #82C3EC;
+        color: #1d1b1b;
+      }
+    }
+  }
+
+  .sidebar {
+    background-color: #1d1b1b;
+    border-color: #333;
+
+    .top {
+      .logo {
+        color: #4b56d2;
+      }
+    }
+    hr {
+      border-color: #333;
+    }
+
+    ul {
+      li {
+        &:hover {
+          background-color: #333;
+        }
+
+        .icon {
+          color: #82C3EC;
+        }
+      }
+    }
+  }
+
+  input {
+    background-color: transparent;
+  }
+}

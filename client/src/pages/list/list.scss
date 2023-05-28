@@ -1,0 +1,24 @@
+.list{
+    display: flex;
+    width: 100%;
+    .listContainer{
+        flex: 6;
+        .addProjectButton {
+            margin: 10px 10px;
+            .newProjectButton {
+              background-color: #1ae427;
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 10px;
+              cursor: pointer;
+              font-size: 16px;
+              transition: background-color 0.3s ease;
+            }
+        
+            .newProjectButton:hover {
+              background-color: #1c7913;
+            }
+          }
+    }
+}
