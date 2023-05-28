@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import UserRoutes from "./routes/users.js"
 import AuthRoutes from "./routes/auth.js"
-import ProjectRoutes from "./routes/projects.js"
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -26,8 +25,6 @@ app.use(cookieParser());
 
 app.use("/api/auth",AuthRoutes);
 app.use("/api/users",UserRoutes);
-app.use("/api/projects",ProjectRoutes);
-
 
 app.use((err, req, res, next)=>{
     const status = err.status || 500;
