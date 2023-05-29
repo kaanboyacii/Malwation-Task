@@ -58,38 +58,6 @@ const Sidebar = () => {
               <span>Projeler</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Maliyetler</span>
-            </li>
-          </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Ödemeler</span>
-          </li>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Siparişler</span>
-          </li>
-          <p className="title">KULLANIM</p>
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>İstatistikler</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Bildirimler</span>
-          </li>
-          <p className="title">SERVİS</p>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Kayıtlar</span>
-          </li>
-          <li>
-            <SettingsIcon className="icon" />
-            <span>Ayarlar</span>
-          </li>
           <p className="title">KULLANICI</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
