@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./home.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Table from "../../components/table/Table";
+import Datatable from "../../components/datatable/Datatable";
 import { useSelector } from "react-redux";
 
 const Home = () => {
@@ -17,8 +17,8 @@ const Home = () => {
 
         </div>
         <div className="listContainer">
-          <div className="listTitle">Projelerim</div>
-          <Table />
+          <div className="listTitle">Events</div>
+          <Datatable />
         </div>
       </div>
     </div>

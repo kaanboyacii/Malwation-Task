@@ -44,28 +44,28 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">YÖNETİM</p>
+          <p className="title">MANAGEMENT</p>
           <Link to="/" style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
-              <span>Anasayfa</span>
+              <span>Home Page</span>
             </li>
-            <p className="title">LİSTE</p>
+            <p className="title">LIST</p>
           </Link>
           <Link to="/projects" style={{ textDecoration: "none" }}>
             <li>
               <AssignmentIcon className="icon" />
-              <span>Projeler</span>
+              <span>Events</span>
             </li>
           </Link>
-          <p className="title">KULLANICI</p>
+          <p className="title">USER</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Profil</span>
+            <span>Profile</span>
           </li>
           <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
-            <span>Çıkış yap</span>
+            <span>Log out</span>
           </li>
         </ul>
       </div>
