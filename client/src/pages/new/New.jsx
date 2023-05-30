@@ -8,12 +8,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const New = () => {
-  const [projects, setProjects] = useState([]);
+  const [events, setEvents] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
   const [inputs, setInputs] = useState({});
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -23,17 +22,17 @@ const New = () => {
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    const { title, desc, status } = inputs;
+    const { title, desc, location } = inputs;
 
-    if (!title || !desc || !status) {
+    if (!title || !desc || !location) {
       setErrorMessage("Lütfen tüm alanları doldurunuz.");
       return;
     }
 
     try {
-      const res = await axios.post("/projects", { ...inputs });
+      const res = await axios.post("/events", { ...inputs });
       if (res.status === 200) {
-        navigate(`/projects/${res.data._id}`);
+        navigate(`/events/`);
       }
     } catch (error) {
       console.log(error);
@@ -46,29 +45,52 @@ const New = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Yeni Proje Oluştur</h1>
+          <h1>Add New Event</h1>
         </div>
         <div className="bottom">
           <div className="right">
             <form>
               <div className="formInput">
-                <label>Proje Adı</label>
-                <input type="text" name="title" onChange={handleChange} required />
+                <label>Event Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="formInput">
-                <label>Açıklama</label>
-                <input type="text" name="desc" onChange={handleChange} required />
+                <label>Description</label>
+                <input
+                  type="text"
+                  name="desc"
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="formInput">
-                <label>Durum</label>
-                <input type="text" name="status" onChange={handleChange} required />
+                <label>Location</label>
+                <input
+                  type="text"
+                  name="location"
+                  onChange={handleChange}
+                  required
+                />
               </div>
               <div className="formInput">
-                <label>İletişim</label>
-                <input type="text" name="contact" onChange={handleChange} required />
+                <label>Date</label>
+                <input
+                  type="date"
+                  name="date"
+                  onChange={handleChange}
+                  required
+                />
               </div>
-            <button onClick={handleUpload}>Proje Oluştur</button>
-            {errorMessage && <div className="errorMessage">{errorMessage}</div>}            </form>
+              <button onClick={handleUpload}>Create Event</button>
+              {errorMessage && (
+                <div className="errorMessage">{errorMessage}</div>
+              )}{" "}
+            </form>
           </div>
         </div>
       </div>

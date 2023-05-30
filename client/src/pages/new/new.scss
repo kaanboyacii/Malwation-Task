@@ -1,6 +1,7 @@
 .new {
   width: 100%;
   display: flex;
+  justify-content: center; 
 
   .newContainer {
     flex: 6;
@@ -9,7 +10,7 @@
     .bottom {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      margin: 20px 0;
+      margin: 20px 20px;
       display: flex;
       align-items: center;
 
