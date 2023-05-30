@@ -17,7 +17,7 @@ const Home = () => {
 
         </div>
         <div className="listContainer">
-          <div className="listTitle">Events</div>
+          <div className="listTitle">All Events</div>
           <Datatable />
         </div>
       </div>

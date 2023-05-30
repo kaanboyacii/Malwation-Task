@@ -29,7 +29,7 @@ const Datatable = ({ type }) => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const res = await axios.get(`/events/findByUser/${currentUser._id}`);
+      const res = await axios.get("/events/");
       setEvents(res.data);
     };
     fetchEvents();
@@ -37,24 +37,18 @@ const Datatable = ({ type }) => {
 
   const columns = [
     { field: "title", headerName: "Title", width: 240 },
-    { field: "desc", headerName: "Description", width: 240 },
+    { field: "desc", headerName: "Description", width: 290 },
     { field: "location", headerName: "Location", width: 240 },
     {
       field: "date",
       headerName: "Date",
-      width: 110,
+      width: 200,
     },
     {
       field: "actions",
-      headerName: "Aksiyon",
-      width: 80,
-      renderCell: (params) => (
-        <button
-          className="deleteButton"
-        >
-          Kaldır
-        </button>
-      ),
+      headerName: "Actions",
+      width: 200,
+      renderCell: (params) => <button className="deleteButton">Details</button>,
     },
   ];
 
@@ -65,7 +59,9 @@ const Datatable = ({ type }) => {
     title: event.title,
     desc: event.desc,
     location: event.location,
-    date: new Date(event.date).toLocaleDateString(),
+    date: event.date
+      ? new Date(event.date).toLocaleDateString()
+      : "unexplained",
   }));
 
   const getRowId = (row) => row.id;
