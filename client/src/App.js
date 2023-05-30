@@ -26,7 +26,7 @@ function App() {
             <Route path="/">
               <Route index element={<Home />} />
               <Route path="login" element={<Login />} />
-              <Route path="projects">
+              <Route path="events">
                 <Route index element={<List />} />
                 <Route
                   path="new"
