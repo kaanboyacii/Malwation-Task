@@ -38,6 +38,20 @@ const Table1 = ({ type }) => {
     setOpenUpdate(true);
   };
 
+  const handleDeleteClick = async (eventId) => {
+    setSelectedEventId(eventId);
+    try {
+      const confirmed = window.confirm("Silmek istediğinize emin misiniz?");
+      if (!confirmed) {
+        return;
+      }
+      await axios.delete(`/events/${eventId}/`);
+      window.location.reload();
+    } catch (err) {
+      console.log("Error deleting event");
+    }
+  };
+
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -64,20 +78,39 @@ const Table1 = ({ type }) => {
                   : "unexplained"}
               </TableCell>
               <TableCell className="tableCell">
-                <button onClick={() => handleDetailClick(event._id)} className="detailsButton">Details</button>
+                <button
+                  onClick={() => handleDetailClick(event._id)}
+                  className="detailsButton"
+                >
+                  Details
+                </button>
               </TableCell>
               <TableCell className="tableCell">
-                <button onClick={() => handleUpdateClick(event._id)} className="updateButton">Update</button>
+                <button
+                  onClick={() => handleUpdateClick(event._id)}
+                  className="updateButton"
+                >
+                  Update
+                </button>
               </TableCell>
               <TableCell className="tableCell">
-                <button className="deleteButton">Delete</button>
+                <button
+                  onClick={() => handleDeleteClick(event._id)}
+                  className="deleteButton"
+                >
+                  Delete
+                </button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {openDetail && <Detail setOpenDetail={setOpenDetail} eventId={selectedEventId} />}
-      {openUpdate && <Update setOpenUpdate={setOpenUpdate} eventId={selectedEventId} />}
+      {openDetail && (
+        <Detail setOpenDetail={setOpenDetail} eventId={selectedEventId} />
+      )}
+      {openUpdate && (
+        <Update setOpenUpdate={setOpenUpdate} eventId={selectedEventId} />
+      )}
     </TableContainer>
   );
 };

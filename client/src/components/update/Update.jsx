@@ -57,7 +57,7 @@ const UpdateProject = ({ setOpenUpdate, eventId }) => {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
-  };  
+  };
 
   return (
     <div className="container">
@@ -92,12 +92,12 @@ const UpdateProject = ({ setOpenUpdate, eventId }) => {
         />
         <label className="label">Date:</label>
         <input
-  type="date"
-  value={event?.date ? formatDate(event.date) : ""}
-  name="date"
-  onChange={handleChange}
-  className="input"
-/>
+          type="date"
+          value={event?.date ? formatDate(event.date) : ""}
+          name="date"
+          onChange={handleChange}
+          className="input"
+        />
         <button onClick={handleUpdate} className="button">
           Güncelle
         </button>
