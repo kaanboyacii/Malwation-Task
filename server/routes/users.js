@@ -4,6 +4,7 @@ import {
     deleteUser,
     getUser,
     updateImg,
+    getUsers,
 } from "../controllers/user.js";
 import { verifyToken } from "../verifyToken.js";
 
@@ -20,5 +21,8 @@ router.delete("/:id", verifyToken, deleteUser);
 
 //get a user
 router.get("/find/:id", getUser);
+
+//get all users
+router.get("/", getUsers);
 
 export default router;
