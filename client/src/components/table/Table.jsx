@@ -11,10 +11,12 @@ import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Detail from "../detail/Detail";
+import Update from "../update/Update";
 
 const Table1 = ({ type }) => {
   const [events, setEvents] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState(null);
 
@@ -29,6 +31,11 @@ const Table1 = ({ type }) => {
   const handleDetailClick = (eventId) => {
     setSelectedEventId(eventId);
     setOpenDetail(true);
+  };
+
+  const handleUpdateClick = (eventId) => {
+    setSelectedEventId(eventId);
+    setOpenUpdate(true);
   };
 
   return (
@@ -53,14 +60,14 @@ const Table1 = ({ type }) => {
               <TableCell className="tableCell">{event.location}</TableCell>
               <TableCell className="tableCell">
                 {event.date
-                  ? new Date(event.date).toLocaleString()
+                  ? new Date(event.date).toLocaleDateString()
                   : "unexplained"}
               </TableCell>
               <TableCell className="tableCell">
                 <button onClick={() => handleDetailClick(event._id)} className="detailsButton">Details</button>
               </TableCell>
               <TableCell className="tableCell">
-                <button className="updateButton">Update</button>
+                <button onClick={() => handleUpdateClick(event._id)} className="updateButton">Update</button>
               </TableCell>
               <TableCell className="tableCell">
                 <button className="deleteButton">Delete</button>
@@ -70,6 +77,7 @@ const Table1 = ({ type }) => {
         </TableBody>
       </Table>
       {openDetail && <Detail setOpenDetail={setOpenDetail} eventId={selectedEventId} />}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} eventId={selectedEventId} />}
     </TableContainer>
   );
 };

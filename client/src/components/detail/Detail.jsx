@@ -51,7 +51,7 @@ const Detail = ({ setOpenDetail, eventId }) => {
             <p className="date">
               Date:{" "}
               {event.date
-                ? new Date(event.date).toLocaleString()
+                ? new Date(event.date).toLocaleDateString()
                 : "unexplained"}
             </p>
             <p className="userName">Event owner: {getUserName(event.userId)}</p>
