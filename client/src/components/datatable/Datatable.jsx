@@ -10,6 +10,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 const Datatable = ({ type }) => {
   const { currentUser } = useSelector((state) => state.user);
   const [events, setEvents] = useState([]);
+  const [users, setUsers] = useState([]);
   const { darkMode } = useContext(DarkModeContext);
   const dispatch = useDispatch();
   const path = useLocation().pathname.split("/")[2];
@@ -17,12 +18,12 @@ const Datatable = ({ type }) => {
 
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light", // Dark mode'u etkinleştirin veya devre dışı bırakın
+      mode: darkMode ? "dark" : "light", // Enable or disable dark mode
       primary: {
-        main: "#82C3EC", // Başlık yazı rengi
+        main: "#82C3EC", // Header text color
       },
       secondary: {
-        main: "#4B56D2", // Tek numaralı satırlardaki yazı rengi
+        main: "#4B56D2", // Text color in odd rows
       },
     },
   });
@@ -33,6 +34,12 @@ const Datatable = ({ type }) => {
       setEvents(res.data);
     };
     fetchEvents();
+
+    const fetchUsers = async () => {
+      const res = await axios.get("/users/");
+      setUsers(res.data);
+    };
+    fetchUsers();
   }, [type]);
 
   const columns = [
@@ -45,6 +52,11 @@ const Datatable = ({ type }) => {
       width: 200,
     },
     {
+      field: "userName",
+      headerName: "User",
+      width: 200,
+    },
+    {
       field: "actions",
       headerName: "Actions",
       width: 200,
@@ -54,15 +66,18 @@ const Datatable = ({ type }) => {
 
   let rows = [];
 
-  rows = events.map((event, index) => ({
-    id: event._id || index, // event._id mevcutsa kullan, değilse bir indeks değeri kullan
-    title: event.title,
-    desc: event.desc,
-    location: event.location,
-    date: event.date
-      ? new Date(event.date).toLocaleDateString()
-      : "unexplained",
-  }));
+  rows = events.map((event, index) => {
+    const user = users.find((user) => user._id === event.userId); // Update the property name here
+    return {
+      id: event._id || index,
+      title: event.title,
+      desc: event.desc,
+      location: event.location,
+      date: event.date ? new Date(event.date).toLocaleDateString() : "unexplained",
+      userName: user ? user.name : "unknown",
+    };
+  });
+  
 
   const getRowId = (row) => row.id;
 
