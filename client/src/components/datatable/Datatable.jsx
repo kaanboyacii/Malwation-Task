@@ -61,17 +61,17 @@ const Datatable = ({ type }) => {
     {
       field: "date",
       headerName: "Date",
-      width: 200,
+      width: 140,
     },
     {
       field: "userName",
       headerName: "Event Owner",
-      width: 200,
+      width: 140,
     },
     {
       field: "actions",
       headerName: "Actions",
-      width: 200,
+      width: 140,
       renderCell: (params) => (
         <button
           onClick={() => handleDetailClick(params.row.id)}

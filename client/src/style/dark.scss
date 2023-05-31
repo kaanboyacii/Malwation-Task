@@ -42,9 +42,11 @@
     color: #999;
     border-color: #333;
 
-    .search {
-      border-color: gray;
+    .search input::placeholder {
+      font-size: 12px;
+      color: #fff; /* Değiştirilmek istenen renk */
     }
+    
     .button {
       display: inline-block;
       padding: 0.5rem 1rem;

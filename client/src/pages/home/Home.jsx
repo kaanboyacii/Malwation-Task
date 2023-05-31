@@ -7,15 +7,11 @@ import Datatable from "../../components/datatable/Datatable";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-
   return (
     <div className="home">
       <Sidebar />
       <div className="homeContainer">
         <Navbar />
-        <div className="widgets">
-
-        </div>
         <div className="listContainer">
           <div className="listTitle">All Events</div>
           <Datatable />
