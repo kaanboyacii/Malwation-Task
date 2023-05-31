@@ -10,10 +10,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Detail from "../detail/Detail";
 
-const List = ({ type }) => {
+const Table1 = ({ type }) => {
   const [events, setEvents] = useState([]);
   const { currentUser } = useSelector((state) => state.user);
+  const [openDetail, setOpenDetail] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState(null);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -21,7 +24,12 @@ const List = ({ type }) => {
       setEvents(res.data);
     };
     fetchEvents();
-  }, [type]);
+  }, [type, currentUser._id]);
+
+  const handleDetailClick = (eventId) => {
+    setSelectedEventId(eventId);
+    setOpenDetail(true);
+  };
 
   return (
     <TableContainer component={Paper} className="table">
@@ -48,9 +56,8 @@ const List = ({ type }) => {
                   ? new Date(event.date).toLocaleString()
                   : "unexplained"}
               </TableCell>
-
               <TableCell className="tableCell">
-                <button className="detailsButton">Details</button>
+                <button onClick={() => handleDetailClick(event._id)} className="detailsButton">Details</button>
               </TableCell>
               <TableCell className="tableCell">
                 <button className="updateButton">Update</button>
@@ -62,8 +69,9 @@ const List = ({ type }) => {
           ))}
         </TableBody>
       </Table>
+      {openDetail && <Detail setOpenDetail={setOpenDetail} eventId={selectedEventId} />}
     </TableContainer>
   );
 };
 
-export default List;
+export default Table1;

@@ -34,11 +34,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <img
-            className="logo"
-            src={darkMode ? Logo : Logo}
-            alt=""
-          />
+          <img className="logo" src={darkMode ? Logo : Logo} alt="" />
         </Link>
       </div>
       <hr />
@@ -50,8 +46,8 @@ const Sidebar = () => {
               <DashboardIcon className="icon" />
               <span>Home Page</span>
             </li>
-            <p className="title">LIST</p>
           </Link>
+          <p className="title">LIST</p>
           <Link to="/events" style={{ textDecoration: "none" }}>
             <li>
               <AssignmentIcon className="icon" />

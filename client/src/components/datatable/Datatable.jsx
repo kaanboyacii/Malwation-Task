@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useContext, useEffect, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
+import Detail from "../detail/Detail";
 
 const Datatable = ({ type }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -15,6 +16,9 @@ const Datatable = ({ type }) => {
   const dispatch = useDispatch();
   const path = useLocation().pathname.split("/")[2];
   const navigate = useNavigate();
+  const [openDetail, setOpenDetail] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [event, setEvent] = useState([]);
 
   const theme = createTheme({
     palette: {
@@ -27,6 +31,14 @@ const Datatable = ({ type }) => {
       },
     },
   });
+
+  const handleDetailClick = (eventId) => {
+    setSelectedEventId(eventId);
+    setOpenDetail(true);
+
+    const selectedEvent = events.find((event) => event._id === eventId);
+    setEvent(selectedEvent);
+  };
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -53,14 +65,21 @@ const Datatable = ({ type }) => {
     },
     {
       field: "userName",
-      headerName: "User",
+      headerName: "Event Owner",
       width: 200,
     },
     {
       field: "actions",
       headerName: "Actions",
       width: 200,
-      renderCell: (params) => <button className="deleteButton">Details</button>,
+      renderCell: (params) => (
+        <button
+          onClick={() => handleDetailClick(params.row.id)}
+          className="deleteButton"
+        >
+          Details
+        </button>
+      ),
     },
   ];
 
@@ -73,11 +92,12 @@ const Datatable = ({ type }) => {
       title: event.title,
       desc: event.desc,
       location: event.location,
-      date: event.date ? new Date(event.date).toLocaleDateString() : "unexplained",
+      date: event.date
+        ? new Date(event.date).toLocaleDateString()
+        : "unexplained",
       userName: user ? user.name : "unknown",
     };
   });
-  
 
   const getRowId = (row) => row.id;
 
@@ -106,6 +126,9 @@ const Datatable = ({ type }) => {
           getRowId={getRowId}
         />
       </div>
+      {openDetail && (
+        <Detail setOpenDetail={setOpenDetail} eventId={selectedEventId} />
+      )}
     </ThemeProvider>
   );
 };
