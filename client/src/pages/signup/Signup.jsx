@@ -107,7 +107,7 @@ const Signup = () => {
       navigate("/");
     } catch (err) {
       dispatch(registerFailure());
-      setErrorMessage2("Geçersiz kullanıcı bilgileri !");
+      setErrorMessage2("Invalid user credentials!");
     }
   };
 

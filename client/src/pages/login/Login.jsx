@@ -137,7 +137,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (isTimeout) {
-      setErrorMessage("5 hatalı giriş denemesi yaptınız. Lütfen 5 dakika bekleyin.");
+      setErrorMessage("You have made 5 incorrect login attempts. Please wait for 5 minutes.");
       return;
     }
     dispatch(loginStart());
@@ -150,7 +150,7 @@ const Login = () => {
       setLoginAttempts((prevAttempts) => prevAttempts + 1);
       if (loginAttempts + 1 >= 5) {
         setIsTimeout(true);
-        setErrorMessage("5 hatalı giriş denemesi yaptınız. Lütfen 5 dakika bekleyin.");
+        setErrorMessage("You have made 5 incorrect login attempts. Please wait for 5 minutes.");
         const timeout = setTimeout(() => {
           setIsTimeout(false);
           setLoginAttempts(0);
@@ -159,7 +159,7 @@ const Login = () => {
         }, 5 * 60 * 1000); // 5 dakika
         return () => clearTimeout(timeout);
       }
-      setErrorMessage("Geçersiz giriş bilgileri !");
+      setErrorMessage("Invalid login credentials!");
     }
   };
 
