@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Entry = () => {
   return (
-    <div className="home">
+    <div className="entry">
       <img src={Logo} alt="Logo" />
       <div className="button-container">
         <Link to="/login">

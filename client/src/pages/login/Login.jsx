@@ -75,6 +75,7 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 1rem;
   font-size: 1rem;
+  margin: 10px 10px 10px 10px;
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 
   &:hover {
@@ -166,22 +167,23 @@ const Login = () => {
     <Container>
       <Wrapper>
         <Form>
-          <Title>Giriş yap</Title>
+          <Title>Sign in</Title>
           <Input
-            placeholder="Kullanıcı adı"
+            placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="password"
-            placeholder="Şifre"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleLogin} disabled={isTimeout}>
-            Giriş yap
+            Login
           </Button>
           <Error>{errorMessage}</Error>
-          <SubTitle>Kayıt olmak için buradan devam et</SubTitle>
-          <Button onClick={() => navigate("/signup")}>Kayıt ol</Button>
+          <SubTitle>Continue here to sign up</SubTitle>
+          <Button onClick={() => navigate("/signup")}>Register</Button>
+          <Button onClick={() => navigate("/homepage")}>Go Back To The Homepage</Button>{" "}
         </Form>
       </Wrapper>
     </Container>

@@ -74,6 +74,7 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 1rem;
   font-size: 1rem;
+  margin: 10px 10px 10px 10px;
   cursor: pointer;
 
   &:hover {
@@ -114,26 +115,27 @@ const Signup = () => {
     <Container>
       <Wrapper>
         <Form>
-          <Title>Kayıt ol</Title>
+          <Title>Sign Up</Title>
           <Input
-            placeholder="Kullanıcı adı"
+            placeholder="Name"
             onChange={(e) => setName(e.target.value)}
           />
           <Input
-            placeholder="E-posta"
+            placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             type="password"
-            placeholder="Şifre"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleRegister}>Kayıt ol</Button>
+          <Button onClick={handleRegister}>Register</Button>
           <Error>
             {errorMessage2 && <div>{errorMessage2}</div>}
           </Error>
-          <SubTitle>Zaten hesabın var mı ?</SubTitle>
-          <Button onClick={() => navigate("/login")}>Giriş yap</Button>{" "}
+          <SubTitle>Do you already have an account?</SubTitle>
+          <Button onClick={() => navigate("/login")}>Login</Button>{" "}
+          <Button onClick={() => navigate("/homepage")}>Go Back To The Homepage</Button>{" "}
         </Form>
       </Wrapper>
     </Container>

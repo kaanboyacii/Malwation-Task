@@ -1,25 +1,38 @@
-.home {
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.entry {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: #f2f2f2;
+  animation: slideIn 0.5s ease-in-out;
 }
 
-.home img {
+.entry img {
   width: 600px;
   height: auto;
   margin-bottom: 40px;
 }
 
-.home .button-container {
+.entry .button-container {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
 }
 
-.home .button {
+.entry .button {
   padding: 10px 20px;
   background-color: #4B56D2;
   color: #fff;
@@ -56,7 +69,7 @@
   }
 }
 
-.home .datatable-container {
+.entry .datatable-container {
   width: 80%;
   margin: 0 auto;
 }
