@@ -6,11 +6,15 @@ export const addEvent = async (req, res, next) => {
   const newEvent = new Event({ userId: req.user.id, ...req.body });
   try {
     const savedEvent = await newEvent.save();
-    res.status(200).json(savedEvent)
+    res.status(200).json(savedEvent);
   } catch (err) {
-    next(err)
+    if (err.code === 11000 && err.keyPattern && err.keyPattern.title) {
+      return res.status(400).json({ message: "An event with this title already exists." });
+    }
+    next(err);
   }
 };
+
 
 export const updateEvent = async (req, res, next) => {
   try {

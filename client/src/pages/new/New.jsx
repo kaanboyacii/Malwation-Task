@@ -35,7 +35,11 @@ const New = () => {
         navigate(`/events/`);
       }
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        setErrorMessage(error.response.data.message); // Hata mesajını ayarla
+      } else {
+        setErrorMessage("Bir hata oluştu."); // Genel hata mesajı
+      }
     }
   };
 
