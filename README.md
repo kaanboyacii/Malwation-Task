@@ -1,5 +1,4 @@
 ﻿# Malwation Task Events Web App
- Project Preview: https://www.youtube.com/watch?v=qgEBcuOgj48
  
  Gallery:
  ![Screenshot 2023-06-03 at 13-14-01 Malwation](https://github.com/kaanboyacii/Malw-Task/assets/98668706/67f65079-5f3d-4aca-9763-e6f3566390ce)
