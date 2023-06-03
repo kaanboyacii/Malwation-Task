@@ -46,6 +46,8 @@ Installation
 
     You can check if the application is working by going to http://localhost:3000 in your browser.
 
+Sample member accounts: e-mail: kaan@gmail.com password: 123456
+
 API Usage
 
 The API is accessible under the /api URL. Refer to the API documentation for more information on the routes and parameters.
