@@ -1,4 +1,4 @@
-﻿# Video Sharing Web App
+﻿# Malwation Task Events Web App
  Project Preview: https://www.youtube.com/watch?v=qgEBcuOgj48
  
  Gallery:
@@ -19,8 +19,6 @@
  -MongoDB
  
  -Redux
- 
- -Firebase
 
 
 This is a web application built using MERN Stack (MongoDB, Express, React, Node.js).
