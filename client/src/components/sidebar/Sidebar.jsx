@@ -55,10 +55,6 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
           <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
             <span>Log out</span>
