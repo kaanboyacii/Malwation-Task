@@ -53,7 +53,8 @@ API Usage
 The API is accessible under the /api URL. Refer to the API documentation for more information on the routes and parameters.
 Contributing
 
-Please read the CONTRIBUTING.md file before making any contributions.
+You can take a look at the thunder-collection_malwation.json file located in the root directory. It is used as a resource by ThunderClient.
+
 License
 
 This project is licensed under the MIT license. See the LICENSE file for more information.
