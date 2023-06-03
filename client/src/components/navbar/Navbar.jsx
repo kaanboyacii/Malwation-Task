@@ -51,8 +51,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="search">
-          <input type="text" placeholder="Search..." />
-          <SearchOutlinedIcon />
+
         </div>
         <div className="items">
           <div className="item">
@@ -75,7 +74,7 @@ const Navbar = () => {
             <img src={currentUser.img} alt="" className="avatar" />
           </div>
           <button className="logout-button" onClick={handleLogout}>
-            Çıkış yap
+            Log out
           </button>
         </div>
       </div>
