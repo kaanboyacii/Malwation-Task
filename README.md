@@ -1,5 +1,4 @@
 ﻿# Malwation Task Events Web App
- Project Preview: https://www.youtube.com/watch?v=qgEBcuOgj48
  
  Gallery:
  ![Screenshot 2023-06-03 at 13-14-01 Malwation](https://github.com/kaanboyacii/Malw-Task/assets/98668706/67f65079-5f3d-4aca-9763-e6f3566390ce)
@@ -53,7 +52,8 @@ API Usage
 The API is accessible under the /api URL. Refer to the API documentation for more information on the routes and parameters.
 Contributing
 
-Please read the CONTRIBUTING.md file before making any contributions.
+You can take a look at the thunder-collection_malwation.json file located in the root directory. It is used as a resource by ThunderClient.
+
 License
 
 This project is licensed under the MIT license. See the LICENSE file for more information.
