@@ -4,7 +4,7 @@ import { verifyToken } from "../verifyToken.js";
 
 const router = express.Router();
 //get all events
-router.get("/", verifyToken, getAllEvent)
+router.get("/", getAllEvent)
 //add new event
 router.post("/", verifyToken, addEvent)
 //update event
